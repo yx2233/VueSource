@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    
+<body>
+    <!-- 
+        mustache循环对象数组
+        var 模板 = `{{#arr}} 循环体 {{/arr}}`
+        var 数据 = {    
+            str: [
+                { name: "小明", age: 18, sex: "男" },
+                { name: "小红", age: 12, sex: "男" },
+                { name: "小强", age: 13, sex: "女" },
+            ]
+        }       
+        var domStr = Mustache.render(模板,数据)
+        将domStr添加到dom中
+     -->
+    <div id="container"></div>
+    <script src="./jslib/mustache.js"></script>
+    <script>
+        var templateStr = `
+            <ul>
+                {{#arr}}
+                    <li>
+                        <div>{{name}}的基本信息</div>
+                        <div>
+                            <p>姓名：{{name}} </p>
+                            <p>性别：{{sex}} </p>
+                            <p>年龄：{{age}} </p>
+                        </div>
+                    </li>
+                {{/arr}}
+            </ul>
+        `;
+        var data = {
+            arr: [
+                { name: "小明", age: 18, sex: "男" },
+                { name: "小红", age: 12, sex: "男" },
+                { name: "小强", age: 13, sex: "女" },
+            ]
+        }
+
+        var domStr = Mustache.render(templateStr, data);
+        console.log(domStr);
+        var container = document.getElementById('container');
+        container.innerHTML = domStr;
+    </script>
+</body>
+
+</html>

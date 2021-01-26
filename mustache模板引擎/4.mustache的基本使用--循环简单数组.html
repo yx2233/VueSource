@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="./jslib/mustache.js"></script>
+    <script>
+        var templateStr = `
+            <ul>
+                {{#arr}}
+                    <li>
+                        <div>{{.}}</div>
+                    </li>
+                {{/arr}}
+            </ul>
+        `;
+        var data = {
+            arr: ["小明", "小红", "小强"]
+        }
+  
+        var domStr = Mustache.render(templateStr, data);
+        console.log(domStr);
+        var container = document.getElementById('container');
+        container.innerHTML = domStr;
+    </script>
+    
+</body>
+</html>

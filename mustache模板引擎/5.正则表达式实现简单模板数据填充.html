@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script src="./jslib/mustache.js"></script>
+    <script>
+        var templateStr = `<h1>我买了一个{{thing}},花了{{money}}元,我很{{mood}}</h1>`;
+        var data = {
+            thing: "手机",
+            money: 5,
+            mood: "开心"
+        }
+
+        // 最简单的模板引擎的实现方式，利用的是正则表达式的replace()方法。
+        // replace()方法的第二个参数可以是函数，这个函数提供捕获参数。
+        // 结合data对象，实现智能替换
+        function render(templateStr,data){
+            return templateStr.replace(/\{\{(\w+)\}\}/g , function(finStr,$1){
+                return data[$1];
+            }) 
+        }
+        var result = render(templateStr,data)
+        console.log( result );
+        // 说明：不能实现循环，mustache底层不是这个
+    </script>
+    
+</body>
+</html>
